@@ -1,7 +1,5 @@
 from aiohttp import web
-
-from task1.app import create_app
-
+from app import create_app
 
 app = create_app()
 

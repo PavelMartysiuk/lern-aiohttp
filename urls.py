@@ -1,5 +1,5 @@
-from task1.view import calculate
+from views import create_user
 
 
 def add_urls(app):
-    app.router.add_post('/', calculate)
+    app.router.add_post('/user', create_user)

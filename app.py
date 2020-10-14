@@ -1,5 +1,5 @@
 from aiohttp import web
-from task1.urls import add_urls
+from urls import add_urls
 
 
 async def create_app():
