@@ -51,7 +51,7 @@ async def delete_user(request):
         return Response(text=json.dumps({'delete': 'success'}), status=201)
 
 
-async def retrieve_users(request):
+async def retrieve_user(request):
     user_id = request.query['id']
     with connect() as sess:
         try:
