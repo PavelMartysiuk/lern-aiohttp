@@ -1,14 +1,15 @@
 from sqlalchemy import (
     create_engine,
     DateTime,
-    MetaData,
     Integer,
     String,
     Column,
     Float,
     Table,
-    Text
 )
+
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 from datetime import datetime
 
@@ -16,22 +17,24 @@ from app1.settings import load_config
 
 engine = create_engine(load_config()['sqlalchemy'])
 
-metadata = MetaData()
+Base = declarative_base()
+Session = sessionmaker(bind=engine)
 
-users = Table(
-    "users", metadata,
-    Column("id", Integer, primary_key=True),
-    Column("user_id", Integer, unique=True),
-    Column("user_name", String),
-    Column("last_user_name", Text),
-    Column("add_time", DateTime, default=datetime.now())
-)
 
-items = Table(
-    'items', metadata,
-    Column('id', Integer, primary_key=True),
-    Column('name', String),
-    Column('price', Float)
-)
+class User(Base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    last__name = Column(String)
+    email = Column(String)
+    password = Column(String)
+    add_date = Column(DateTime, default=datetime.now().strftime("%B %d, %Y"))
 
-metadata.create_all(engine)
+
+class Items(Base):
+    __tablename__ = 'items'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    price = Column(Float)
+if __name__  == '__main__':
+    Base.metadata.create_all(engine)

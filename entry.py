@@ -4,9 +4,6 @@ import argparse
 from app1.settings import load_config
 from aiohttp_rest_framework import setup_rest_framework
 
-from app1 import views
-
-
 parser = argparse.ArgumentParser()
 parser.add_argument('--host', help="Host to listen", default="127.0.0.0")
 parser.add_argument('--port', help="Port to accept connections", default=8000)
@@ -18,4 +15,4 @@ app = create_app(load_config())
 setup_rest_framework(app)
 
 if __name__ == '__main__':
-    web.run_app(app)
+    web.run_app(app,)
